@@ -1,4 +1,6 @@
-(function() {
+$( document ).ready(function() {
+
+
   var stopPlayAt = 10, // Stop play at time in seconds
       stopPlayTimer;   // Reference to settimeout call
 
@@ -33,11 +35,12 @@
   function onPlayerStateChange(event) {
     var time, rate, remainingTime;
     clearTimeout(stopPlayTimer);
+    
     if (event.data == YT.PlayerState.PLAYING) {
       time = player.getCurrentTime();
       // Add .4 of a second to the time in case it's close to the current time
       // (The API kept returning ~9.7 when hitting play after stopping at 10s)
-      console.log(time);
+
       if (time + .4 < stopPlayAt) {
         rate = player.getPlaybackRate();
         remainingTime = (stopPlayAt - time) / rate;
@@ -48,4 +51,8 @@
   function pauseVideo() {
     player.pauseVideo();
   }
-})();
+
+    $('#button').click(function(){
+        console.log(player.getCurrentTime());
+    });
+});
