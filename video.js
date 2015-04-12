@@ -4,7 +4,7 @@
 
   // This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement("script");
-  tag.src = "https://www.youtube.com/iframe_api";
+  tag.src = "//www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -37,6 +37,7 @@
       time = player.getCurrentTime();
       // Add .4 of a second to the time in case it's close to the current time
       // (The API kept returning ~9.7 when hitting play after stopping at 10s)
+      console.log(time);
       if (time + .4 < stopPlayAt) {
         rate = player.getPlaybackRate();
         remainingTime = (stopPlayAt - time) / rate;
